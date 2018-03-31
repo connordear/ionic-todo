@@ -17,12 +17,12 @@ app.use(express.static("www")); // Our Ionic app build is in the www folder (kep
 var MONGODB_URI = process.env.MONGODB_URI || 'mongodb://heroku_2kngzkb9:jrahd44fp10c2n4l0jdl0fv2or@ds131329.mlab.com:31329/heroku_2kngzkb9';
 
 // Initialize database connection and then start the server.
-mongoClient.connect(MONGODB_URI, function(err, database) {
+mongoClient.connect(MONGODB_URI, function(err, client) {
   if (err) {
     process.exit(1);
   }
 
-  db = database; // Our database object from mLab
+  db = client.db(); // Our database object from mLab
 
   console.log("Database connection ready");
 
