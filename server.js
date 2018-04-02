@@ -38,6 +38,7 @@ app.get("/api/todos", function(req, res) {
     if (err) {
       handleError(res, err.message, "Failed to get todos");
     } else {
+      console.log("Getting those todos boss!");
       res.status(200).json(docs);
     }
   });
