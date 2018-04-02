@@ -4,6 +4,8 @@ var bodyParser = require('body-parser');
 var cors = require('cors');
 var app = express();
 
+
+
 var mongodb = require('mongodb'),
   mongoClient = mongodb.MongoClient,
   ObjectID = mongodb.ObjectID, // Used in API endpoints
@@ -80,7 +82,7 @@ app.put("/api/todos/:id", function(req, res) {
   var updateTodo = req.body;
   delete updateTodo._id;
 
-  db.collection("todos").updateOne({
+  db.collection("todos").replaceOne({
     _id: new ObjectID(req.params.id)
   }, updateTodo, function(err, doc) {
     if (err) {
@@ -95,7 +97,7 @@ app.put("/api/todos/:id", function(req, res) {
 app.delete("/api/todos/:id", function(req, res) {
   db.collection("todos").deleteOne({
     _id: new ObjectID(req.params.id)
-  }, function(err, res) {
+  }, function(err, result) {
     if (err) {
       handleError(res, err.message, "Failed to delete todo");
     } else {
