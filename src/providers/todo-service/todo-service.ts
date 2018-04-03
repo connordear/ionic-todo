@@ -9,6 +9,7 @@ import { Todo } from '../../app/todo.js';
   See https://angular.io/guide/dependency-injection for more info on providers
   and Angular DI.
 */
+// http://localhost:8100/api/todos OR /api/todos
 @Injectable()
 export class TodoServiceProvider {
   todosUrl = "/api/todos";
